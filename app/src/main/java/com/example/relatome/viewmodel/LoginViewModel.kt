@@ -53,7 +53,7 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
         _navigateToLoginStatus.value = LoginStatus.NOOP
     }
     /**
-     * Factory for constructing DevByteViewModel with parameter
+     * Factory for constructing ViewModel with parameter
      */
     class Factory(val app: Application) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
