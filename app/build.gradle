@@ -10,12 +10,16 @@ android {
 
     defaultConfig {
         applicationId "com.example.relatome"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        dataBinding true
     }
 
     buildTypes {
@@ -24,14 +28,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
-    implementation 'com.google.android.material:material:1.2.1'
+    def nav_version = "2.3.1"
+
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    def nav_version = "2.3.1"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -42,7 +51,35 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    // Fragment
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$version_retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$version_retrofit"
+    // Gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
+
+    // Room
+    implementation "androidx.room:room-ktx:$version_room"
+
+    // Timber
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // For issue https://stackoverflow.com/questions/47274677/room-cannot-find-implementation
+    kapt "android.arch.persistence.room:compiler:1.1.1"
+
+    // Moshi
+    implementation "com.squareup.moshi:moshi:1.8.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+    implementation "com.squareup.retrofit2:converter-moshi:$version_retrofit"
+
+    // material ui
+    implementation 'com.google.android.material:material:<version>'
+
+
+
+
 
 }

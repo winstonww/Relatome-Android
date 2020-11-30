@@ -6,20 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.relatome.R
+import com.example.relatome.databinding.FragmentHomeBinding
+
 
 /**
  * A simple [Fragment] subclass.
- * Use the [FragmentLogin.newInstance] factory method to
+ * Use the [HomeFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentLogin : Fragment() {
+class HomeFragment : Fragment() {
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 }

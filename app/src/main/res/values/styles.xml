@@ -11,4 +11,9 @@
         <item name="android:background">@drawable/rounded_button</item>
     </style>
 
+    <style name="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">#FF9800</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+    </style>
+
 </resources>
