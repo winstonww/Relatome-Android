@@ -4,28 +4,37 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.example.relatome.database.getDatabase
 import com.example.relatome.repo.LoginRepository
+import com.example.relatome.repo.RelationshipRepository
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 enum class HomeStatus{
     NOOP,
     LOADING
 }
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
-    val loginRepo = LoginRepository(application.applicationContext,
-        getDatabase(application.applicationContext)
-    )
+    val loginRepo = LoginRepository(getDatabase(application.applicationContext))
+    val relationshipRepo = RelationshipRepository(getDatabase(application.applicationContext))
+
     val login = loginRepo.loginDomainHome
+
+    val relationshipList = relationshipRepo.relationshipList
 
     private var _loadingStatus = MutableLiveData<HomeStatus>()
     val loadingStatus : LiveData<HomeStatus>
         get() = _loadingStatus
 
     init {
+        refreshRelationships()
+    }
+    fun refreshRelationships() {
         viewModelScope.launch {
             _loadingStatus.value = HomeStatus.LOADING
-
-
+            val authToken = loginRepo.getAuthToken()
+            Timber.i("Auth Token: ${authToken}")
+            relationshipRepo.refreshRelationships(authToken)
         }
+
     }
     /**
      * Factory for constructing ViewModel with parameter

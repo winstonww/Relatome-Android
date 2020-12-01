@@ -17,8 +17,7 @@ enum class LoginStatus {
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
-    val loginRepo = LoginRepository(application.applicationContext,
-                                    getDatabase(application.applicationContext))
+    val loginRepo = LoginRepository(getDatabase(application.applicationContext))
 
     private val _navigateToLoginStatus = MutableLiveData<LoginStatus>()
     val navigateToLoginStatus : LiveData<LoginStatus>

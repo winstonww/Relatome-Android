@@ -10,13 +10,26 @@ interface LoginDao {
     @Query("SELECT * FROM loginentity")
     fun getLoginEntity(): LiveData<List<LoginEntity>>
 
+    @Query("SELECT * FROM loginentity")
+    fun getDeadLoginEntity(): List<LoginEntity>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertLoginEntity(loginEntity: LoginEntity)
 }
 
-@Database(entities = [LoginEntity::class], version = 1)
+@Dao
+interface RelationshipDao {
+    @Query("SELECT * FROM relationshipentity")
+    fun getRelationships(): LiveData<List<RelationshipEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRelationships(vararg relationships: RelationshipEntity)
+}
+
+@Database(entities = [LoginEntity::class, RelationshipEntity::class], version = 2)
 abstract class RelatomeDatabase: RoomDatabase() {
     abstract val loginDao : LoginDao
+    abstract val relationshipDao : RelationshipDao
 }
 
 

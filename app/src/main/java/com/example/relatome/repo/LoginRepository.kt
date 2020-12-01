@@ -13,7 +13,7 @@ import com.example.relatome.network.asDatabaseLoginEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class LoginRepository(val appContext: Context, val database: RelatomeDatabase) {
+class LoginRepository(val database: RelatomeDatabase) {
 
     val loginDomainHome = Transformations.map(database.loginDao.getLoginEntity()) {
         it.first().asLoginDomainHome()
@@ -25,5 +25,13 @@ class LoginRepository(val appContext: Context, val database: RelatomeDatabase) {
             database.loginDao.insertLoginEntity(result!!.asDatabaseLoginEntity())
         }
         return result != null
+    }
+
+    suspend fun getAuthToken(): String {
+        var result: String? = null
+        withContext(Dispatchers.IO) {
+            result = database.loginDao.getDeadLoginEntity().first().authToken
+        }
+        return result!!
     }
 }

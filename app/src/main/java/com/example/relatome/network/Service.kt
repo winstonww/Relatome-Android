@@ -9,6 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 
 private val moshi = Moshi.Builder()
@@ -25,6 +26,9 @@ private val retrofit = Retrofit.Builder()
 interface RelatomeApiService {
     @POST("user/login")
     suspend fun login(@Body body: LoginRequest) : LoginResponse
+
+    @GET("relationship/list")
+    suspend fun getRelationships(@Header("auth-token") authToken: String): List<RelationshipResponse>
 }
 
 object RelatomeApi {
