@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DiffUtil
@@ -62,10 +63,11 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        activity?.run {
-            mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        } ?: throw Throwable("invalid activity")
-        mainViewModel.updateToolbarTitle("Home")
+//        activity?.run {
+//            mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+//        } ?: throw Throwable("invalid activity")
+//        mainViewModel.updateToolbarTitle("Home")
+        (activity as AppCompatActivity).supportActionBar?.hide()
     }
 }
 
