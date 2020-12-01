@@ -16,6 +16,7 @@ import com.example.relatome.R
 import com.example.relatome.databinding.FragmentHomeBinding
 import com.example.relatome.databinding.RelationshipItemRecyclerBinding
 import com.example.relatome.domain.RelationshipDomainHome
+import com.example.relatome.viewmodel.HomeStatus
 import com.example.relatome.viewmodel.HomeViewModel
 import com.example.relatome.viewmodel.LoginViewModel
 import com.example.relatome.viewmodel.MainViewModel
@@ -50,6 +51,13 @@ class HomeFragment : Fragment() {
 
         homeViewModel.relationshipList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
+        })
+
+        homeViewModel.loadingStatus.observe(viewLifecycleOwner, Observer {
+            when(it){
+                HomeStatus.LOADING -> binding.homeProgressBar.visibility = View.VISIBLE
+                else -> binding.homeProgressBar.visibility = View.GONE
+            }
         })
 
         // Swipe to refresh

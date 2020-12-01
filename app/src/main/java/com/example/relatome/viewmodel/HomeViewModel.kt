@@ -33,6 +33,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             val authToken = loginRepo.getAuthToken()
             Timber.i("Auth Token: ${authToken}")
             relationshipRepo.refreshRelationships(authToken)
+            _loadingStatus.value = HomeStatus.NOOP
         }
 
     }
