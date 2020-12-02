@@ -63,6 +63,11 @@ class LoginFragment : Fragment() {
                 LoginStatus.NOOP -> {
                     binding.myProgressBar.visibility = View.GONE
                 }
+                LoginStatus.TIMEOUT -> {
+                    Snackbar.make(binding.root, "Connection timed out. Please try again.", Snackbar.LENGTH_LONG).show()
+                    loginViewModel.setNavigateToLoginComplete()
+                    binding.myProgressBar.visibility = View.GONE
+                }
             }
 
 

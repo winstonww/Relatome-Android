@@ -10,3 +10,8 @@ data class RelationshipDomainHome(
     val as2Name: String,
     val relationship : String
 )
+
+data class AsNameDomainAsNameSuggestion(
+    val id: String,
+    val asName: String
+)

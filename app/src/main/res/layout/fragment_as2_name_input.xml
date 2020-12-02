@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        tools:context=".ui.As2NameInputFragment">
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/as2name_textviiew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Name for the second anatomical structure:"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@+id/as2name_edittext"
+            app:layout_constraintEnd_toEndOf="@+id/as2name_edittext"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/as2name_edittext" />
+
+        <EditText
+            android:id="@+id/as2name_edittext"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_edittext"
+            android:backgroundTint="#555555"
+            android:ems="10"
+            android:hint="Anatomical Structure 2"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/darker_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.141" />
+
+        <Button
+            android:id="@+id/next_button_as2Name_input"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
+            android:layout_width="319dp"
+            android:layout_height="46dp"
+            android:text="Next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.51"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/as2name_edittext"
+            app:layout_constraintVertical_bias="0.895" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

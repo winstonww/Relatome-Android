@@ -28,10 +28,8 @@ class LoginRepository(val database: RelatomeDatabase) {
     }
 
     suspend fun getAuthToken(): String {
-        var result: String? = null
-        withContext(Dispatchers.IO) {
-            result = database.loginDao.getDeadLoginEntity().first().authToken
+        return withContext(Dispatchers.IO) {
+            database.loginDao.getDeadLoginEntity().first().authToken
         }
-        return result!!
     }
 }

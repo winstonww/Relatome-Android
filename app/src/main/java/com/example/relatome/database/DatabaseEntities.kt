@@ -3,6 +3,7 @@ package com.example.relatome.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.relatome.domain.AsNameDomainAsNameSuggestion
 import com.example.relatome.domain.LoginDomainHome
 import com.example.relatome.domain.RelationshipDomainHome
 

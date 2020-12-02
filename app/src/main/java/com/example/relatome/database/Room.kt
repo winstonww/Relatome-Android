@@ -26,6 +26,7 @@ interface RelationshipDao {
     fun insertRelationships(vararg relationships: RelationshipEntity)
 }
 
+
 @Database(entities = [LoginEntity::class, RelationshipEntity::class], version = 2)
 abstract class RelatomeDatabase: RoomDatabase() {
     abstract val loginDao : LoginDao

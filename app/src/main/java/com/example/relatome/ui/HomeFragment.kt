@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -20,6 +21,7 @@ import com.example.relatome.viewmodel.HomeStatus
 import com.example.relatome.viewmodel.HomeViewModel
 import com.example.relatome.viewmodel.LoginViewModel
 import com.example.relatome.viewmodel.MainViewModel
+import timber.log.Timber
 
 
 /**
@@ -66,6 +68,10 @@ class HomeFragment : Fragment() {
             binding.pullToRefreshRelationships.setRefreshing(false);
         }
 
+        binding.floatingActionButton.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAs1NameInputFragment())
+        }
+
         return binding.root
     }
 
@@ -104,5 +110,6 @@ class RelationshipAdapter: ListAdapter<RelationshipDomainHome, RelationshipAdapt
         holder.binding.as1Name.text = item.as1Name
         holder.binding.as2Name.text = item.as2Name
         holder.binding.relatonship.text = item.relationship
+        Timber.i("Here in bindviewholder2")
     }
 }

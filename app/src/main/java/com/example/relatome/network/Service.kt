@@ -7,10 +7,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -29,6 +26,9 @@ interface RelatomeApiService {
 
     @GET("relationship/list")
     suspend fun getRelationships(@Header("auth-token") authToken: String): List<RelationshipResponse>
+
+    @GET("relationship/as/name")
+    suspend fun getAs(@Header("auth-token") authToken: String, @Query("name") pattern: String): List<AsResponse>
 }
 
 object RelatomeApi {

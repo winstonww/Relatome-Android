@@ -12,7 +12,8 @@ enum class LoginStatus {
     NOOP,
     LOADING,
     LOGGED_IN,
-    ERROR
+    ERROR,
+    TIMEOUT
 }
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
@@ -43,6 +44,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                 } else {
                     throw e
                 }
+            } catch (e: java.net.SocketTimeoutException) {
+                _navigateToLoginStatus.value = LoginStatus.TIMEOUT
             }
 
         }

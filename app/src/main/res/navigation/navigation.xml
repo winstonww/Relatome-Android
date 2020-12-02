@@ -17,5 +17,49 @@
         android:id="@+id/homeFragment"
         android:name="com.example.relatome.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_as1NameInputFragment"
+            app:destination="@id/as1NameInputFragment"
+            app:enterAnim="@anim/from_bottom" />
+    </fragment>
+    <fragment
+        android:id="@+id/as1NameInputFragment"
+        android:name="com.example.relatome.ui.As1NameInputFragment"
+        android:label="fragment_as1_name_input"
+        tools:layout="@layout/fragment_as1_name_input" >
+        <action
+            android:id="@+id/action_as1NameInputFragment_to_as1NameSuggestionFragment"
+            app:destination="@id/as1NameSuggestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/as1NameSuggestionFragment"
+        android:name="com.example.relatome.ui.As1NameSuggestionFragment"
+        android:label="fragment_as1_name_suggestion"
+        tools:layout="@layout/fragment_as1_name_suggestion" >
+        <argument
+            android:name="as1nameInput"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_as1NameSuggestionFragment_to_as2NameInputFragment"
+            app:destination="@id/as2NameInputFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/as2NameInputFragment"
+        android:name="com.example.relatome.ui.As2NameInputFragment"
+        android:label="fragment_as2_name_input"
+        tools:layout="@layout/fragment_as2_name_input" >
+        <action
+            android:id="@+id/action_as2NameInputFragment_to_as2NameSuggestionFragment"
+            app:destination="@id/as2NameSuggestionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/as2NameSuggestionFragment"
+        android:name="com.example.relatome.ui.As2NameSuggestionFragment"
+        android:label="fragment_as2_name_suggestion"
+        tools:layout="@layout/fragment_as2_name_suggestion" >
+        <argument
+            android:name="as2nameEdittext"
+            app:argType="string" />
+    </fragment>
 </navigation>

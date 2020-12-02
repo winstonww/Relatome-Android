@@ -2,6 +2,7 @@ package com.example.relatome.network
 
 import com.example.relatome.database.LoginEntity
 import com.example.relatome.database.RelationshipEntity
+import com.example.relatome.domain.AsNameDomainAsNameSuggestion
 
 data class LoginResponse(val name: String, val email: String, val authToken: String)
 
@@ -31,3 +32,19 @@ fun List<RelationshipResponse>.asDatabaseRelationshipEntities(id: Long = 0) : Ar
         )
     }.toTypedArray()
 }
+
+data class AsResponse(
+    val _id: String,
+    val name: String,
+    val createdBy: String
+)
+
+fun List<AsResponse>.asAsNameDomainAsNameSuggestion(id: Long = 0) : List<AsNameDomainAsNameSuggestion> {
+    return map {
+        AsNameDomainAsNameSuggestion(
+            id = it._id,
+            asName = it.name
+        )
+    }
+}
+
