@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/black">
 
+
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="match_parent"
@@ -68,7 +69,6 @@
                     style="@style/AppTheme.RoundedCornerMaterialButton"
                     android:layout_width="319dp"
                     android:layout_height="46dp"
-                    android:layout_gravity="bottom|center"
                     android:text="Next"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -81,6 +81,14 @@
 
 
         </ScrollView>
+
+        <ProgressBar
+            android:id="@+id/homeProgressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

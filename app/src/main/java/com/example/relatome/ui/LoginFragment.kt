@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.relatome.databinding.FragmentLoginBinding
+import com.example.relatome.viewmodel.LoginLoadingStatus
 import com.example.relatome.viewmodel.LoginStatus
 import com.example.relatome.viewmodel.LoginViewModel
 import com.example.relatome.viewmodel.MainViewModel
@@ -46,30 +47,39 @@ class LoginFragment : Fragment() {
             // WARNING : PLEASE DON'T call setNavigateToLoginComplete outside of when, otherwise infinite loop
             when(it) {
                 LoginStatus.ERROR -> {
-                    Snackbar.make(binding.root, "Credentials given are invalid. Please try again.", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(binding.loginLayout, "Credentials given are invalid. Please try again.", Snackbar.LENGTH_LONG).show()
                     loginViewModel.setNavigateToLoginComplete()
                     binding.myProgressBar.visibility = View.GONE
                 }
                 LoginStatus.LOGGED_IN -> {
                     Toast.makeText(context, "Logged In!", Toast.LENGTH_LONG).show()
                     findNavController().navigate(LoginFragmentDirections.actionFragmentLoginToHomeFragment())
-
-                    loginViewModel.setNavigateToLoginComplete()
-                    binding.myProgressBar.visibility = View.GONE
-                }
-                LoginStatus.LOADING -> {
-                    binding.myProgressBar.visibility = View.VISIBLE
-                }
-                LoginStatus.NOOP -> {
-                    binding.myProgressBar.visibility = View.GONE
-                }
-                LoginStatus.TIMEOUT -> {
-                    Snackbar.make(binding.root, "Connection timed out. Please try again.", Snackbar.LENGTH_LONG).show()
                     loginViewModel.setNavigateToLoginComplete()
                     binding.myProgressBar.visibility = View.GONE
                 }
             }
 
+        })
+
+        loginViewModel.loadingStatus.observe(viewLifecycleOwner, Observer {
+
+            // WARNING : PLEASE DON'T call setNavigateToLoginComplete outside of when, otherwise infinite loop
+            when(it) {
+                LoginLoadingStatus.LOADING -> {
+                    binding.myProgressBar.visibility = View.VISIBLE
+                }
+                LoginLoadingStatus.NOOP -> {
+                    binding.myProgressBar.visibility = View.GONE
+                }
+                LoginLoadingStatus.TIMEOUT -> {
+                    Snackbar.make(binding.loginLayout, "Connection timed out. Please try again.", Snackbar.LENGTH_LONG).show()
+                    binding.myProgressBar.visibility = View.GONE
+                }
+                LoginLoadingStatus.NO_CONNECTION -> {
+                    Snackbar.make(binding.loginLayout, "No Connection. Please enable connection and try again.", Snackbar.LENGTH_LONG).show()
+                    binding.myProgressBar.visibility = View.GONE
+                }
+            }
 
         })
 

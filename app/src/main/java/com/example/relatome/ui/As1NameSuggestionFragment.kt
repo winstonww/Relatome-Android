@@ -10,13 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
-import com.example.relatome.databinding.AsnameItemRecyclerBinding
 import com.example.relatome.databinding.FragmentAs1NameSuggestionBinding
-import com.example.relatome.domain.AsNameDomainAsNameSuggestion
 import com.example.relatome.viewmodel.As1NameViewModel
+import com.example.relatome.viewmodel.AsLoadingStatus
+import com.example.relatome.viewmodel.HomeStatus
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.selects.select
 import timber.log.Timber
 
 /**
@@ -43,7 +41,7 @@ class As1NameSuggestionFragment : Fragment() {
             As1NameViewModel.Factory(requireActivity().application, args.as1nameInput))
             .get(As1NameViewModel::class.java)
 
-        val adapter = As1NameSuggestionAdapter(viewModel)
+        val adapter = AsNameSuggestionAdapter(viewModel)
         binding.as1NameRecycler.adapter = adapter
 
         viewModel.asNameList.observe(viewLifecycleOwner, Observer {
@@ -51,12 +49,24 @@ class As1NameSuggestionFragment : Fragment() {
             adapter.data = it
         })
 
+        viewModel.loadingStatus.observe(viewLifecycleOwner, Observer {
+            when(it){
+                AsLoadingStatus.LOADING -> binding.homeProgressBar.visibility = View.VISIBLE
+                AsLoadingStatus.TIMEOUT -> {
+                    Snackbar.make(binding.root, "Connection timeout. Please try again.", Snackbar.LENGTH_LONG).show()
+                    viewModel.refreshAsNames(args.as1nameInput)
+                }
+                else -> binding.homeProgressBar.visibility = View.GONE
+            }
+        })
+
+
         binding.nextButtonAs1NameSuggestion.setOnClickListener {
             val item = adapter.getSelectedItem()
             if(item == null) {
                 Snackbar.make(binding.root, "Please select one anatomical structure from the above list.", Snackbar.LENGTH_LONG).show()
             } else {
-                viewModel.saveAs1Id(item!!.id, requireActivity().getSharedPreferences("SHARED_PREFERENCES", Context.MODE_PRIVATE))
+                viewModel.saveAsId(item!!.id, requireActivity().getSharedPreferences("Share", Context.MODE_PRIVATE))
                 findNavController().navigate(As1NameSuggestionFragmentDirections.actionAs1NameSuggestionFragmentToAs2NameInputFragment())
             }
 
@@ -72,54 +82,6 @@ class As1NameSuggestionFragment : Fragment() {
 //        } ?: throw Throwable("invalid activity")
 //        mainViewModel.updateToolbarTitle("Home")
         (activity as AppCompatActivity).supportActionBar?.hide()
-    }
-
-}
-
-class As1NameSuggestionAdapter(val viewModel: As1NameViewModel) : RecyclerView.Adapter<As1NameSuggestionAdapter.ViewHolder>() {
-    var data = listOf<AsNameDomainAsNameSuggestion>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    class ViewHolder(val binding: AsnameItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root)
-
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        return ViewHolder(AsnameItemRecyclerBinding.inflate(layoutInflater, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
-        Timber.i("Here in bindviewholder1")
-        holder.binding.asName.text = item.asName
-        if (viewModel.selectedPosition == position) {
-            holder.binding.divider.visibility = View.VISIBLE
-        } else {
-            holder.binding.divider.visibility = View.GONE
-        }
-        holder.binding.root.setOnClickListener {
-            if (viewModel.selectedPosition == position) {
-                viewModel.selectedPosition = -1
-                notifyDataSetChanged()
-            } else {
-                viewModel.selectedPosition = position
-                notifyDataSetChanged()
-            }
-        }
-    }
-
-    override fun getItemCount(): Int {
-        return data.size
-    }
-
-    fun getSelectedItem(): AsNameDomainAsNameSuggestion? {
-        if (viewModel.selectedPosition == -1) {
-            return null
-        }
-        return data[viewModel.selectedPosition]
     }
 
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:enabled="true"
+        android:icon="@drawable/undraw_content_re_33px"
+        android:title="Browse"/>
+    <item
+        android:id="@+id/contributeHomeFragment"
+        android:enabled="true"
+        android:icon="@drawable/undraw_searching_p5ux"
+        android:title="Contribute"/>
+</menu>

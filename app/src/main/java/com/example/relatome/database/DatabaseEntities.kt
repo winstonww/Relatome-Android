@@ -38,6 +38,7 @@ data class RelationshipEntity(
 fun List<RelationshipEntity>.asRelationshipDomainHome(): List<RelationshipDomainHome> {
     return map {
         RelationshipDomainHome(
+            id = it.id,
             as1Name = it.as1Name,
             as2Name = it.as2Name,
             relationship = it.relationship

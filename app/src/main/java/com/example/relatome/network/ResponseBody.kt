@@ -15,12 +15,21 @@ fun LoginResponse.asDatabaseLoginEntity(id: Long = 0) : LoginEntity {
     )
 }
 
+data class AddRelationshipResponse(
+    val _id: String
+)
+
 data class RelationshipResponse(
     val id: String,
     val as1Name: String,
     val as2Name: String,
     val relationship: String
 )
+
+data class DeleteRelationshipResponse(
+    val result: String
+)
+
 
 fun List<RelationshipResponse>.asDatabaseRelationshipEntities(id: Long = 0) : Array<RelationshipEntity> {
     return map {

@@ -21,7 +21,10 @@
         <action
             android:id="@+id/action_homeFragment_to_as1NameInputFragment"
             app:destination="@id/as1NameInputFragment"
-            app:enterAnim="@anim/from_bottom" />
+            app:enterAnim="@anim/from_bottom"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/from_bottom"
+            app:popExitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/as1NameInputFragment"
@@ -59,7 +62,15 @@
         android:label="fragment_as2_name_suggestion"
         tools:layout="@layout/fragment_as2_name_suggestion" >
         <argument
-            android:name="as2nameEdittext"
+            android:name="as2nameInput"
             app:argType="string" />
+        <action
+            android:id="@+id/action_as2NameSuggestionFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/contributeHomeFragment"
+        android:name="com.example.relatome.ui.ContributeHomeFragment"
+        android:label="fragment_contribute_home"
+        tools:layout="@layout/fragment_contribute_home" />
 </navigation>

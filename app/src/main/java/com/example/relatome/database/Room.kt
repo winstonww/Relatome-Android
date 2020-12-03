@@ -24,6 +24,10 @@ interface RelationshipDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRelationships(vararg relationships: RelationshipEntity)
+
+    @Query("DELETE FROM relationshipentity")
+    fun clearAll()
+
 }
 
 

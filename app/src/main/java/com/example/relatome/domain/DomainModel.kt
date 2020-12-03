@@ -6,6 +6,7 @@ data class LoginDomainHome(
 )
 
 data class RelationshipDomainHome(
+    val id: String,
     val as1Name: String,
     val as2Name: String,
     val relationship : String
