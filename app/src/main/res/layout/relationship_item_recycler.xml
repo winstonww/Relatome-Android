@@ -52,16 +52,16 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="142dp"
                 android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="29dp"
                     android:layout_height="52dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/relatonship"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/left_arrow" />
 
@@ -69,13 +69,13 @@
                     android:id="@+id/relatonship"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="9dp"
+                    android:layout_marginEnd="30dp"
                     android:fontFamily="@font/roboto"
                     android:text="TextView"
                     android:textColor="@android:color/white"
                     android:textSize="16dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Posterior" />
 

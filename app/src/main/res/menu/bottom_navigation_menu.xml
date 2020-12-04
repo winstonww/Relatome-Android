@@ -6,8 +6,14 @@
         android:icon="@drawable/undraw_content_re_33px"
         android:title="Browse"/>
     <item
-        android:id="@+id/contributeHomeFragment"
+        android:id="@+id/contributeBNFragment"
         android:enabled="true"
         android:icon="@drawable/undraw_searching_p5ux"
         android:title="Contribute"/>
+
+    <item
+        android:id="@+id/reviseBNFragment"
+        android:enabled="true"
+        android:icon="@drawable/undraw_publish_post_vowb"
+        android:title="Revise"/>
 </menu>

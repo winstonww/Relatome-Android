@@ -20,7 +20,7 @@ enum class AsLoadingStatus {
     LOADING,
 }
 
-abstract open class AsNameViewModel(application: Application, val searchString: String) :
+abstract class AsNameViewModel(application: Application, val searchString: String) :
     AndroidViewModel(application) {
 
     companion object {
@@ -80,7 +80,7 @@ abstract open class AsNameViewModel(application: Application, val searchString: 
         }
     }
 
-    abstract open fun saveAsId(id: String, sp: SharedPreferences)
+    abstract fun saveAsId(id: String, sp: SharedPreferences)
 
 }
 

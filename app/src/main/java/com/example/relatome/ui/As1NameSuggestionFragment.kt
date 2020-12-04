@@ -66,7 +66,7 @@ class As1NameSuggestionFragment : Fragment() {
             if(item == null) {
                 Snackbar.make(binding.root, "Please select one anatomical structure from the above list.", Snackbar.LENGTH_LONG).show()
             } else {
-                viewModel.saveAsId(item!!.id, requireActivity().getSharedPreferences("Share", Context.MODE_PRIVATE))
+                viewModel.saveAsId(item.id, requireActivity().getSharedPreferences("Share", Context.MODE_PRIVATE))
                 findNavController().navigate(As1NameSuggestionFragmentDirections.actionAs1NameSuggestionFragmentToAs2NameInputFragment())
             }
 

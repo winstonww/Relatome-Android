@@ -11,13 +11,14 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_fragmentLogin_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/navigation" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.relatome.ui.HomeFragment"
+        android:name="com.example.relatome.ui.HomeBNFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home_b_n" >
         <action
             android:id="@+id/action_homeFragment_to_as1NameInputFragment"
             app:destination="@id/as1NameInputFragment"
@@ -66,11 +67,17 @@
             app:argType="string" />
         <action
             android:id="@+id/action_as2NameSuggestionFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/navigation" />
     </fragment>
     <fragment
-        android:id="@+id/contributeHomeFragment"
-        android:name="com.example.relatome.ui.ContributeHomeFragment"
+        android:id="@+id/contributeBNFragment"
+        android:name="com.example.relatome.ui.ContributeBNFragment"
         android:label="fragment_contribute_home"
-        tools:layout="@layout/fragment_contribute_home" />
+        tools:layout="@layout/fragment_contribute_b_n" />
+    <fragment
+        android:id="@+id/reviseBNFragment"
+        android:name="com.example.relatome.ui.ReviseBNFragment"
+        android:label="fragment_revise_b_n"
+        tools:layout="@layout/fragment_revise_b_n" />
 </navigation>

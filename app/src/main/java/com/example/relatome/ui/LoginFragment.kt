@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -92,5 +93,6 @@ class LoginFragment : Fragment() {
             mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         } ?: throw Throwable("invalid activity")
         mainViewModel.updateToolbarTitle("Log in")
+        (activity as AppCompatActivity).supportActionBar?.show()
     }
 }

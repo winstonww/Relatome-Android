@@ -2,7 +2,6 @@ package com.example.relatome.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -16,7 +15,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relatome.R
-import com.example.relatome.databinding.FragmentHomeBinding
+import com.example.relatome.databinding.FragmentHomeBNBinding
 import com.example.relatome.databinding.RelationshipItemRecyclerBinding
 import com.example.relatome.domain.RelationshipDomainHome
 import com.example.relatome.viewmodel.HomeStatus
@@ -28,20 +27,21 @@ import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
+ * Use the [HomeBNFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeFragment : Fragment() {
+class HomeBNFragment : BottomNavigationFragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var mainViewModel: MainViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val binding = FragmentHomeBNBinding.inflate(inflater, container, false)
 
         val adapter = RelationshipAdapter()
         binding.relationshipRecycler.adapter = adapter
@@ -80,7 +80,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.floatingActionButton.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToAs1NameInputFragment())
+            findNavController().navigate(HomeBNFragmentDirections.actionHomeFragmentToAs1NameInputFragment())
         }
 
         // Attach itemtouchhelper to recyclerview
@@ -107,21 +107,21 @@ class HomeFragment : Fragment() {
             }
         }
 
-        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
-            when(item.itemId) {
-                R.id.homeFragment -> {
-                    // Respond to navigation item 1 reselection
-                    true
-                }
-                R.id.contributeHomeFragment -> {
-                    // Respond to navigation item 2 reselection
-                    findNavController().navigate(R.id.contributeHomeFragment)
-                    true
-                }
-                else -> true
-
-            }
-        }
+//        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
+//            when(item.itemId) {
+//                R.id.homeFragment -> {
+//                    // Respond to navigation item 1 reselection
+//                    true
+//                }
+//                R.id.contributeBNFragment -> {
+//                    // Respond to navigation item 2 reselection
+//                    viewFragment(ContributeBNFragment(), FRAGMENT_OTHER)
+//                    true
+//                }
+//                else -> true
+//
+//            }
+//        }
 
         val itemTouchHelper = ItemTouchHelper(ithCallback)
         itemTouchHelper.attachToRecyclerView(binding.relationshipRecycler)
@@ -138,6 +138,7 @@ class HomeFragment : Fragment() {
         super.onStart()
         homeViewModel.refreshRelationships()
     }
+
 
 }
 

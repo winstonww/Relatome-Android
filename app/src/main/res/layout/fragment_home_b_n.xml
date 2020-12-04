@@ -28,8 +28,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@android:color/black"
-                android:paddingBottom="50dp"
-                tools:context=".ui.HomeFragment">
+                android:paddingBottom="120dp"
+                tools:context=".ui.HomeBNFragment">
 
                 <!-- TODO: Update blank fragment layout -->
 
