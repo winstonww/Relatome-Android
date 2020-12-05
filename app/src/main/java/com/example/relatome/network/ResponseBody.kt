@@ -1,6 +1,7 @@
 package com.example.relatome.network
 
 import com.example.relatome.database.LoginEntity
+import com.example.relatome.database.PendingRelationshipEntity
 import com.example.relatome.database.RelationshipEntity
 import com.example.relatome.domain.AsNameDomainAsNameSuggestion
 
@@ -55,5 +56,22 @@ fun List<AsResponse>.asAsNameDomainAsNameSuggestion(id: Long = 0) : List<AsNameD
             asName = it.name
         )
     }
+}
+
+data class PendingRelationshipResponse(
+    val id: String,
+    val as1Name: String,
+    val as2Name: String,
+    val postedAt: String)
+
+fun List<PendingRelationshipResponse>.asPendingRelationshipEntity(id: Long = 0) : Array<PendingRelationshipEntity> {
+    return map {
+        PendingRelationshipEntity(
+            id = it.id,
+            as1Name = it.as1Name,
+            as2Name = it.as2Name,
+            postedAt = it.postedAt
+        )
+    }.toTypedArray()
 }
 

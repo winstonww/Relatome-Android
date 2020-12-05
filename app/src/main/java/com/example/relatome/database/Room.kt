@@ -30,11 +30,27 @@ interface RelationshipDao {
 
 }
 
+@Dao
+interface PendingRelationshipDao {
 
-@Database(entities = [LoginEntity::class, RelationshipEntity::class], version = 2)
+    @Query("SELECT * FROM pendingrelationshipentity")
+    fun getPendingRelationships(): LiveData<List<PendingRelationshipEntity>>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertPendingRelationships(vararg prs: PendingRelationshipEntity)
+
+    @Query("DELETE FROM pendingrelationshipentity")
+    fun clearAll()
+
+}
+
+@Database(entities = [LoginEntity::class,
+    RelationshipEntity::class,
+    PendingRelationshipEntity::class], version = 3)
 abstract class RelatomeDatabase: RoomDatabase() {
     abstract val loginDao : LoginDao
     abstract val relationshipDao : RelationshipDao
+    abstract val pendingRelationshipDao: PendingRelationshipDao
 }
 
 

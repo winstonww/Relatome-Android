@@ -12,6 +12,13 @@ data class RelationshipDomainHome(
     val relationship : String
 )
 
+data class PendingRelationshipDomainContribute(
+    val id: String,
+    val as1Name: String,
+    val as2Name: String,
+    val postedAt: String
+)
+
 data class AsNameDomainAsNameSuggestion(
     val id: String,
     val asName: String

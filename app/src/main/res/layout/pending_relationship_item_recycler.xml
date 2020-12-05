@@ -23,13 +23,14 @@
                     android:id="@+id/as1_name"
                     android:layout_width="194dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="8dp"
                     android:text="TextView"
                     android:textColor="@android:color/white"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.342"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Heart" />
@@ -55,28 +56,14 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/relatonship"
+                    android:id="@+id/postedAt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="36dp"
-                    android:fontFamily="@font/roboto"
-                    android:text="TextView"
-                    android:textColor="@android:color/white"
-                    android:textSize="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="16dp"
+                    android:text="12-01-2020"
+                    android:textColor="#FFFFFF"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Posterior" />
-
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="24dp"
-                    android:layout_height="40dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/relatonship"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/right_arrow" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -11,11 +11,11 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_fragmentLogin_to_homeFragment"
-            app:destination="@id/homeFragment"
+            app:destination="@id/homeBNFragment"
             app:popUpTo="@id/navigation" />
     </fragment>
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/homeBNFragment"
         android:name="com.example.relatome.ui.HomeBNFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home_b_n" >
@@ -67,7 +67,7 @@
             app:argType="string" />
         <action
             android:id="@+id/action_as2NameSuggestionFragment_to_homeFragment"
-            app:destination="@id/homeFragment"
+            app:destination="@id/homeBNFragment"
             app:popUpTo="@id/navigation" />
     </fragment>
     <fragment

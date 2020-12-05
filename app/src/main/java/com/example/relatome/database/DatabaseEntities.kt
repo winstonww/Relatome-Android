@@ -3,9 +3,7 @@ package com.example.relatome.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.relatome.domain.AsNameDomainAsNameSuggestion
-import com.example.relatome.domain.LoginDomainHome
-import com.example.relatome.domain.RelationshipDomainHome
+import com.example.relatome.domain.*
 
 @Entity
 data class LoginEntity(
@@ -34,6 +32,28 @@ data class RelationshipEntity(
     val as2Name: String,
     val relationship: String
 )
+
+@Entity
+data class PendingRelationshipEntity(
+    @PrimaryKey
+    val id: String, // relationship id
+    val as1Name: String,
+    val as2Name: String,
+    val postedAt: String
+)
+
+fun List<PendingRelationshipEntity>.asPendingRelationshipDomainContribute():
+        List<PendingRelationshipDomainContribute> {
+    return map {
+        PendingRelationshipDomainContribute(
+            id = it.id,
+            as1Name = it.as1Name,
+            as2Name = it.as2Name,
+            postedAt = it.postedAt
+        )
+    }
+}
+
 
 fun List<RelationshipEntity>.asRelationshipDomainHome(): List<RelationshipDomainHome> {
     return map {

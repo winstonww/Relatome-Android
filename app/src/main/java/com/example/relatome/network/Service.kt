@@ -38,6 +38,12 @@ interface RelatomeApiService {
 
     @GET("relationship/as/name")
     suspend fun getAs(@Header("auth-token") authToken: String, @Query("name") pattern: String): List<AsResponse>
+
+    @GET("relationship/pending/user")
+    suspend fun getPendingRelationships(
+        @Header("auth-token") authToken: String
+    ): List<PendingRelationshipResponse>
+
 }
 
 object RelatomeApi {

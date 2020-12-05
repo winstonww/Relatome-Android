@@ -18,6 +18,7 @@ import com.example.relatome.R
 import com.example.relatome.databinding.FragmentHomeBNBinding
 import com.example.relatome.databinding.RelationshipItemRecyclerBinding
 import com.example.relatome.domain.RelationshipDomainHome
+import com.example.relatome.utils.slideUp
 import com.example.relatome.viewmodel.HomeStatus
 import com.example.relatome.viewmodel.HomeViewModel
 import com.example.relatome.viewmodel.MainViewModel
@@ -44,6 +45,7 @@ class HomeBNFragment : BottomNavigationFragment() {
         val binding = FragmentHomeBNBinding.inflate(inflater, container, false)
 
         val adapter = RelationshipAdapter()
+        binding.bottomNavigation.setSelectedItemId(R.id.homeBNFragment)
         binding.relationshipRecycler.adapter = adapter
         homeViewModel = ViewModelProvider(this,
             HomeViewModel.Factory(requireActivity().application))
@@ -60,7 +62,10 @@ class HomeBNFragment : BottomNavigationFragment() {
 
         homeViewModel.loadingStatus.observe(viewLifecycleOwner, Observer {
             when(it){
-                HomeStatus.LOADING -> binding.homeProgressBar.visibility = View.VISIBLE
+                HomeStatus.LOADING -> {
+                    binding.homeProgressBar.visibility = View.VISIBLE
+                    binding.homeOuterLayout.visibility = View.INVISIBLE
+                }
                 HomeStatus.TIMEOUT -> {
                     Snackbar.make(binding.root, "Connection timeout, Retrying...", Snackbar.LENGTH_LONG).show()
                     homeViewModel.refreshRelationships()
@@ -69,7 +74,11 @@ class HomeBNFragment : BottomNavigationFragment() {
                     Snackbar.make(binding.root, "No Connection. Please try again.", Snackbar.LENGTH_LONG).show()
 
                 }
-                else -> binding.homeProgressBar.visibility = View.GONE
+                else -> {
+                    binding.homeProgressBar.visibility = View.GONE
+                    binding.homeOuterLayout.visibility = View.VISIBLE
+                    binding.homeOuterLayout.slideUp(1000L, 0)
+                }
             }
         })
 
@@ -107,22 +116,6 @@ class HomeBNFragment : BottomNavigationFragment() {
             }
         }
 
-//        binding.bottomNavigation.setOnNavigationItemSelectedListener { item ->
-//            when(item.itemId) {
-//                R.id.homeFragment -> {
-//                    // Respond to navigation item 1 reselection
-//                    true
-//                }
-//                R.id.contributeBNFragment -> {
-//                    // Respond to navigation item 2 reselection
-//                    viewFragment(ContributeBNFragment(), FRAGMENT_OTHER)
-//                    true
-//                }
-//                else -> true
-//
-//            }
-//        }
-
         val itemTouchHelper = ItemTouchHelper(ithCallback)
         itemTouchHelper.attachToRecyclerView(binding.relationshipRecycler)
 
@@ -138,8 +131,6 @@ class HomeBNFragment : BottomNavigationFragment() {
         super.onStart()
         homeViewModel.refreshRelationships()
     }
-
-
 }
 
 

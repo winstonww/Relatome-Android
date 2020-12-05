@@ -3,10 +3,7 @@ package com.example.relatome.ui
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentManager
 import com.example.relatome.R
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 open class BottomNavigationFragment : Fragment() {
@@ -27,7 +24,7 @@ open class BottomNavigationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
             when(item.itemId) {
-                R.id.homeFragment -> {
+                R.id.homeBNFragment -> {
                     // Respond to navigation item 1 reselection
                     viewFragment(HomeBNFragment(), FRAGMENT_HOME)
                     true

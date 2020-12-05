@@ -3,7 +3,7 @@
     <!-- Strings related to login -->
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_user_string">Hello %1$s!</string>
-    <string name="home_intro_string">The following are cards viewed recently:</string>
+    <string name="home_intro_string">The following are cards added recently:</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_as_string"><u><i>Does not exist? Click here to add</i></u></string>
