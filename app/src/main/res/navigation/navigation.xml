@@ -26,6 +26,9 @@
             app:exitAnim="@anim/fragment_close_exit"
             app:popEnterAnim="@anim/from_bottom"
             app:popExitAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/action_homeBNFragment_to_contributeBNFragment"
+            app:destination="@id/contributeBNFragment" />
     </fragment>
     <fragment
         android:id="@+id/as1NameInputFragment"
@@ -78,6 +81,9 @@
         <action
             android:id="@+id/action_contributeBNFragment_to_fillRelationshipFragment"
             app:destination="@id/fillRelationshipFragment" />
+        <action
+            android:id="@+id/action_contributeBNFragment_to_homeBNFragment"
+            app:destination="@id/homeBNFragment" />
     </fragment>
     <fragment
         android:id="@+id/reviseBNFragment"

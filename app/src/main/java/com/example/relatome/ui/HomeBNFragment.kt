@@ -22,6 +22,7 @@ import com.example.relatome.utils.slideUp
 import com.example.relatome.viewmodel.HomeStatus
 import com.example.relatome.viewmodel.HomeViewModel
 import com.example.relatome.viewmodel.MainViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber
 
@@ -31,21 +32,20 @@ import timber.log.Timber
  * Use the [HomeBNFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class HomeBNFragment : BottomNavigationFragment() {
+class HomeBNFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var mainViewModel: MainViewModel
-
+    private lateinit var binding: FragmentHomeBNBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentHomeBNBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBNBinding.inflate(inflater, container, false)
 
         val adapter = RelationshipAdapter()
-        binding.bottomNavigation.setSelectedItemId(R.id.homeBNFragment)
         binding.relationshipRecycler.adapter = adapter
         homeViewModel = ViewModelProvider(this,
             HomeViewModel.Factory(requireActivity().application))
@@ -129,7 +129,26 @@ class HomeBNFragment : BottomNavigationFragment() {
 
     override fun onStart() {
         super.onStart()
+        binding.bottomNavigation.setSelectedItemId(R.id.homeBNFragment)
         homeViewModel.refreshRelationships()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.contributeBNFragment -> {
+                    // Respond to navigation item 1 reselection
+                    findNavController().navigate(HomeBNFragmentDirections.actionHomeBNFragmentToContributeBNFragment())
+                    true
+                }
+                R.id.homeBNFragment -> {
+                    // Respond to navigation item 2 reselection
+                    true
+                }
+                else -> true
+            }
+        }
     }
 }
 

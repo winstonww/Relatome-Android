@@ -20,6 +20,7 @@ import com.example.relatome.domain.RelationshipDomainHome
 import com.example.relatome.viewmodel.ContributeLoadingStatus
 import com.example.relatome.viewmodel.ContributeViewModel
 import com.example.relatome.viewmodel.HomeViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import timber.log.Timber
 
 /**
@@ -27,16 +28,16 @@ import timber.log.Timber
  * Use the [ContributeBNFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ContributeBNFragment : BottomNavigationFragment() {
+class ContributeBNFragment : Fragment() {
 
     private lateinit var contributeViewModel: ContributeViewModel
+    private lateinit var binding: FragmentContributeBNBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentContributeBNBinding.inflate(inflater, container, false)
-        binding.bottomNavigation.setSelectedItemId(R.id.contributeBNFragment)
+        binding = FragmentContributeBNBinding.inflate(inflater, container, false)
 
         val adapter = ContributeBNAdapter( OnClick {
             id -> findNavController().navigate(ContributeBNFragmentDirections.actionContributeBNFragmentToFillRelationshipFragment(id))
@@ -65,6 +66,29 @@ class ContributeBNFragment : BottomNavigationFragment() {
         })
 
         return binding.root
+    }
+
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+            view.findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
+                when(item.itemId) {
+                    R.id.homeBNFragment -> {
+                        // Respond to navigation item 1 reselection
+                        findNavController().navigate(ContributeBNFragmentDirections.actionContributeBNFragmentToHomeBNFragment())
+                        true
+                    }
+                    R.id.contributeBNFragment -> {
+                        // Respond to navigation item 2 reselection
+                        true
+                    }
+                    else -> true
+                }
+            }
+        }
+
+    override fun onStart() {
+        super.onStart()
+        binding.bottomNavigation.setSelectedItemId(R.id.contributeBNFragment)
     }
 }
 
