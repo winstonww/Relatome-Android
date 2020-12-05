@@ -74,10 +74,23 @@
         android:id="@+id/contributeBNFragment"
         android:name="com.example.relatome.ui.ContributeBNFragment"
         android:label="fragment_contribute_home"
-        tools:layout="@layout/fragment_contribute_b_n" />
+        tools:layout="@layout/fragment_contribute_b_n" >
+        <action
+            android:id="@+id/action_contributeBNFragment_to_fillRelationshipFragment"
+            app:destination="@id/fillRelationshipFragment" />
+    </fragment>
     <fragment
         android:id="@+id/reviseBNFragment"
         android:name="com.example.relatome.ui.ReviseBNFragment"
         android:label="fragment_revise_b_n"
         tools:layout="@layout/fragment_revise_b_n" />
+    <fragment
+        android:id="@+id/fillRelationshipFragment"
+        android:name="com.example.relatome.ui.FillRelationshipFragment"
+        android:label="fragment_fill_relationship"
+        tools:layout="@layout/fragment_fill_relationship" >
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </fragment>
 </navigation>

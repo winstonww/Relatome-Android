@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relatome.R
@@ -37,7 +38,9 @@ class ContributeBNFragment : BottomNavigationFragment() {
         val binding = FragmentContributeBNBinding.inflate(inflater, container, false)
         binding.bottomNavigation.setSelectedItemId(R.id.contributeBNFragment)
 
-        val adapter = ContributeBNAdapter()
+        val adapter = ContributeBNAdapter( OnClick {
+            id -> findNavController().navigate(ContributeBNFragmentDirections.actionContributeBNFragmentToFillRelationshipFragment(id))
+        })
         binding.contributeRecycler.adapter = adapter
 
         contributeViewModel = ViewModelProvider(this,
@@ -65,7 +68,9 @@ class ContributeBNFragment : BottomNavigationFragment() {
     }
 }
 
-class ContributeBNAdapter: androidx.recyclerview.widget.ListAdapter<PendingRelationshipDomainContribute, ContributeBNAdapter.ViewHolder>(DiffCallback) {
+class OnClick(val action: (String) -> Unit)
+
+class ContributeBNAdapter(val onClick: OnClick): androidx.recyclerview.widget.ListAdapter<PendingRelationshipDomainContribute, ContributeBNAdapter.ViewHolder>(DiffCallback) {
 
     class ViewHolder(val binding: PendingRelationshipItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -90,6 +95,7 @@ class ContributeBNAdapter: androidx.recyclerview.widget.ListAdapter<PendingRelat
         holder.binding.as1Name.text = item.as1Name
         holder.binding.as2Name.text = item.as2Name
         holder.binding.postedAt.text = item.postedAt.split("T").first()
+        holder.binding.root.setOnClickListener { onClick.action(item.id) }
 //        holder.binding.postedAt.text = item.postedAt
     }
 }
