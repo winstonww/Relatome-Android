@@ -65,3 +65,25 @@ fun List<RelationshipEntity>.asRelationshipDomainHome(): List<RelationshipDomain
         )
     }
 }
+
+
+@Entity
+data class RelationshipResponseEntity(
+    @PrimaryKey
+    val relationshipId: String,
+    val as1Name: String,
+    val as2Name: String,
+    val relationship: String
+)
+
+fun List<RelationshipResponseEntity>.asRelationshipResponseDomainRevise():
+        List<RelationshipResponseDomainRevise> {
+    return map {
+        RelationshipResponseDomainRevise(
+            relationshipId = it.relationshipId,
+            as1Name = it.as1Name,
+            as2Name = it.as2Name,
+            relationship = it.relationship
+        )
+    }
+}

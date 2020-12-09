@@ -3,6 +3,7 @@ package com.example.relatome.network
 import com.example.relatome.database.LoginEntity
 import com.example.relatome.database.PendingRelationshipEntity
 import com.example.relatome.database.RelationshipEntity
+import com.example.relatome.database.RelationshipResponseEntity
 import com.example.relatome.domain.AsNameDomainAsNameSuggestion
 
 data class LoginResponse(val name: String, val email: String, val authToken: String)
@@ -64,7 +65,7 @@ data class PendingRelationshipResponse(
     val as2Name: String,
     val postedAt: String)
 
-fun List<PendingRelationshipResponse>.asPendingRelationshipEntity(id: Long = 0) : Array<PendingRelationshipEntity> {
+fun List<PendingRelationshipResponse>.asPendingRelationshipEntity() : Array<PendingRelationshipEntity> {
     return map {
         PendingRelationshipEntity(
             id = it.id,
@@ -75,3 +76,21 @@ fun List<PendingRelationshipResponse>.asPendingRelationshipEntity(id: Long = 0) 
     }.toTypedArray()
 }
 
+
+data class RelationshipResponseResponse(
+    val relationshipId: String,
+    val as1Name: String,
+    val as2Name: String,
+    val relationship: String
+)
+
+fun List<RelationshipResponseResponse>.asRelationshipResponseEntities(): Array<RelationshipResponseEntity> {
+    return map {
+        RelationshipResponseEntity(
+            relationshipId = it.relationshipId,
+            as1Name = it.as1Name,
+            as2Name = it.as2Name,
+            relationship = it.relationship
+        )
+    }.toTypedArray()
+}

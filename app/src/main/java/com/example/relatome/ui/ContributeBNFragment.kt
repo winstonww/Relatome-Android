@@ -8,19 +8,18 @@ import android.view.ViewGroup
 import android.widget.ListAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relatome.R
 import com.example.relatome.databinding.FragmentContributeBNBinding
 import com.example.relatome.databinding.PendingRelationshipItemRecyclerBinding
-import com.example.relatome.databinding.RelationshipItemRecyclerBinding
 import com.example.relatome.domain.PendingRelationshipDomainContribute
-import com.example.relatome.domain.RelationshipDomainHome
 import com.example.relatome.viewmodel.ContributeLoadingStatus
 import com.example.relatome.viewmodel.ContributeViewModel
-import com.example.relatome.viewmodel.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 /**
@@ -65,36 +64,53 @@ class ContributeBNFragment : Fragment() {
             }
         })
 
+        // Swipe to refresh
+        binding.pullToRefreshPendingRelationships.setOnRefreshListener {
+            lifecycleScope.launchWhenStarted {
+                contributeViewModel.refreshPendingRelationship()
+            }
+            binding.pullToRefreshPendingRelationships.setRefreshing(false);
+        }
+
         return binding.root
     }
 
-        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-            super.onViewCreated(view, savedInstanceState)
-            view.findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
-                when(item.itemId) {
-                    R.id.homeBNFragment -> {
-                        // Respond to navigation item 1 reselection
-                        findNavController().navigate(ContributeBNFragmentDirections.actionContributeBNFragmentToHomeBNFragment())
-                        true
-                    }
-                    R.id.contributeBNFragment -> {
-                        // Respond to navigation item 2 reselection
-                        true
-                    }
-                    else -> true
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.findViewById<BottomNavigationView>(R.id.bottom_navigation).setOnNavigationItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.homeBNFragment -> {
+                    // Respond to navigation item 1 reselection
+                    findNavController().navigate(ContributeBNFragmentDirections.actionContributeBNFragmentToHomeBNFragment())
+                    true
                 }
+                R.id.contributeBNFragment -> {
+                    // Respond to navigation item 2 reselection
+                    true
+                }
+                R.id.reviseBNFragment -> {
+                    findNavController().navigate(ContributeBNFragmentDirections.actionContributeBNFragmentToReviseBNFragment())
+                    true
+                }
+                else -> true
             }
         }
+    }
 
     override fun onStart() {
         super.onStart()
+        lifecycleScope.launch {
+            contributeViewModel.refreshPendingRelationship()
+            Timber.i("On start refresh pending relationship")
+        }
         binding.bottomNavigation.setSelectedItemId(R.id.contributeBNFragment)
     }
 }
 
 class OnClick(val action: (String) -> Unit)
 
-class ContributeBNAdapter(val onClick: OnClick): androidx.recyclerview.widget.ListAdapter<PendingRelationshipDomainContribute, ContributeBNAdapter.ViewHolder>(DiffCallback) {
+class ContributeBNAdapter(val onClick: OnClick):
+    androidx.recyclerview.widget.ListAdapter<PendingRelationshipDomainContribute, ContributeBNAdapter.ViewHolder>(DiffCallback) {
 
     class ViewHolder(val binding: PendingRelationshipItemRecyclerBinding) : RecyclerView.ViewHolder(binding.root)
 

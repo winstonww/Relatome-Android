@@ -59,9 +59,15 @@ class As2NameSuggestionFragment : Fragment() {
             } else {
                 viewModel.saveAsId(item.id, requireActivity().getSharedPreferences("Share", Context.MODE_PRIVATE))
                 viewModel.addRelationship(requireActivity().getSharedPreferences("Share", Context.MODE_PRIVATE))
-                findNavController().navigate(As2NameSuggestionFragmentDirections.actionAs2NameSuggestionFragmentToHomeFragment())
             }
         }
+
+        viewModel.navigateToHomeBN.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                findNavController().navigate(As2NameSuggestionFragmentDirections.actionAs2NameSuggestionFragmentToHomeFragment())
+                viewModel.setNavigateToHomeBNComplete()
+            }
+        })
 
         return binding.root
     }

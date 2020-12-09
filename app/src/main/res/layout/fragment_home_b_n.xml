@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <androidx.core.widget.NestedScrollView
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -93,7 +93,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Most Votes"
+                    android:text="Most Voted"
                     android:fontFamily="@font/roboto"
                     android:textColor="#959393"
                     android:layout_marginEnd="30dp"
@@ -113,7 +113,7 @@
                     app:layout_constraintVertical_bias="0.636" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
+        </ScrollView>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ProgressBar

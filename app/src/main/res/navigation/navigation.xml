@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_homeBNFragment_to_contributeBNFragment"
             app:destination="@id/contributeBNFragment" />
+        <action
+            android:id="@+id/action_homeBNFragment_to_reviseBNFragment"
+            app:destination="@id/reviseBNFragment" />
     </fragment>
     <fragment
         android:id="@+id/as1NameInputFragment"
@@ -80,16 +83,30 @@
         tools:layout="@layout/fragment_contribute_b_n" >
         <action
             android:id="@+id/action_contributeBNFragment_to_fillRelationshipFragment"
-            app:destination="@id/fillRelationshipFragment" />
+            app:destination="@id/fillRelationshipFragment"
+            app:enterAnim="@anim/from_bottom" />
         <action
             android:id="@+id/action_contributeBNFragment_to_homeBNFragment"
             app:destination="@id/homeBNFragment" />
+        <action
+            android:id="@+id/action_contributeBNFragment_to_reviseBNFragment"
+            app:destination="@id/reviseBNFragment" />
     </fragment>
     <fragment
         android:id="@+id/reviseBNFragment"
         android:name="com.example.relatome.ui.ReviseBNFragment"
         android:label="fragment_revise_b_n"
-        tools:layout="@layout/fragment_revise_b_n" />
+        tools:layout="@layout/fragment_revise_b_n" >
+        <action
+            android:id="@+id/action_reviseBNFragment_to_contributeBNFragment"
+            app:destination="@id/contributeBNFragment" />
+        <action
+            android:id="@+id/action_reviseBNFragment_to_homeBNFragment"
+            app:destination="@id/homeBNFragment" />
+        <action
+            android:id="@+id/action_reviseBNFragment_to_fillReviseRelationshipFragment"
+            app:destination="@id/fillReviseRelationshipFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fillRelationshipFragment"
         android:name="com.example.relatome.ui.FillRelationshipFragment"
@@ -98,5 +115,18 @@
         <argument
             android:name="id"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fillRelationshipFragment_to_contributeBNFragment"
+            app:destination="@id/contributeBNFragment"
+            app:popUpTo="@id/navigation" />
+    </fragment>
+    <fragment
+        android:id="@+id/fillReviseRelationshipFragment"
+        android:name="com.example.relatome.ui.FillReviseRelationshipFragment"
+        android:label="fragment_fill_revise_relationship"
+        tools:layout="@layout/fragment_fill_revise_relationship" >
+        <action
+            android:id="@+id/action_fillReviseRelationshipFragment_to_reviseBNFragment"
+            app:destination="@id/reviseBNFragment" />
     </fragment>
 </navigation>

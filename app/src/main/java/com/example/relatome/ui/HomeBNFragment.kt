@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -119,6 +120,8 @@ class HomeBNFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(ithCallback)
         itemTouchHelper.attachToRecyclerView(binding.relationshipRecycler)
 
+        ViewCompat.setNestedScrollingEnabled(binding.relationshipRecycler, false)
+
         return binding.root
     }
 
@@ -144,6 +147,10 @@ class HomeBNFragment : Fragment() {
                 }
                 R.id.homeBNFragment -> {
                     // Respond to navigation item 2 reselection
+                    true
+                }
+                R.id.reviseBNFragment -> {
+                    findNavController().navigate(HomeBNFragmentDirections.actionHomeBNFragmentToReviseBNFragment())
                     true
                 }
                 else -> true

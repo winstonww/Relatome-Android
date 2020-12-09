@@ -23,3 +23,10 @@ data class AsNameDomainAsNameSuggestion(
     val id: String,
     val asName: String
 )
+
+data class RelationshipResponseDomainRevise(
+    val relationshipId: String,
+    val as1Name: String,
+    val as2Name: String,
+    val relationship: String
+)

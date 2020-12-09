@@ -38,13 +38,14 @@ abstract class AsNameViewModel(application: Application, val searchString: Strin
         get() = _asNameList
 
 
-    private lateinit var authToken: String
+    lateinit var authToken: String
 
     private var _loadingStatus = MutableLiveData<AsLoadingStatus>()
     val loadingStatus : LiveData<AsLoadingStatus>
         get() = _loadingStatus
 
     init {
+        Timber.i("In AsNameViewModel init block")
         viewModelScope.launch {
             authToken = loginRepo.getAuthToken()
             refreshAsNames(searchString)
@@ -68,17 +69,6 @@ abstract class AsNameViewModel(application: Application, val searchString: Strin
         }
     }
 
-    fun addRelationship(sp: SharedPreferences) {
-
-            val as1Id = sp.getString(AS1ID, null)
-            val as2Id = sp.getString(AS2ID, null)
-            Timber.i("as1id : ${as1Id}")
-            Timber.i("as2id : ${as2Id}")
-        viewModelScope.launch {
-            relationshipRepo.addRelationship(as1Id!!, as2Id!!, authToken)
-
-        }
-    }
 
     abstract fun saveAsId(id: String, sp: SharedPreferences)
 
@@ -111,6 +101,33 @@ class As1NameViewModel(application: Application, searchString: String) :
 
 class As2NameViewModel(application: Application, searchString: String) :
     AsNameViewModel(application, searchString) {
+
+    private var _navigateToHomeBN = MutableLiveData<Boolean>()
+    val navigateToHomeBN : LiveData<Boolean>
+        get() = _navigateToHomeBN
+
+    init {
+        Timber.i("In As2NameViewModel init block")
+        _navigateToHomeBN.value = false
+
+    }
+
+    fun addRelationship(sp: SharedPreferences) {
+
+        val as1Id = sp.getString(AS1ID, null)
+        val as2Id = sp.getString(AS2ID, null)
+        Timber.i("as1id : ${as1Id}")
+        Timber.i("as2id : ${as2Id}")
+        viewModelScope.launch {
+            relationshipRepo.addRelationship(as1Id!!, as2Id!!, authToken)
+            _navigateToHomeBN.value = true
+
+        }
+    }
+
+    fun setNavigateToHomeBNComplete() {
+        _navigateToHomeBN.value = false
+    }
 
     override fun saveAsId(id: String, sp: SharedPreferences) {
         with(sp.edit()) {

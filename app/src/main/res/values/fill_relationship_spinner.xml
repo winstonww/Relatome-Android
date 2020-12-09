@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="fill_relationship_spinner_array">
+        <item>Anterior</item>
+        <item>Posterior</item>
+        <item>Superior</item>
+        <item>Inferior</item>
+        <item>Ventral</item>
+        <item>Dorsal</item>
+        <item>Proximal</item>
+        <item>Distal</item>
+        <item>Cranial</item>
+        <item>Caudal</item>
+        <item>Medial</item>
+        <item>Lateral</item>
+    </string-array>
+</resources>
