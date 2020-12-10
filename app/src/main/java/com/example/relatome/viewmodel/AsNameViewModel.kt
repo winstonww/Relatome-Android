@@ -38,7 +38,6 @@ abstract class AsNameViewModel(application: Application, val searchString: Strin
         get() = _asNameList
 
 
-    lateinit var authToken: String
 
     private var _loadingStatus = MutableLiveData<AsLoadingStatus>()
     val loadingStatus : LiveData<AsLoadingStatus>
@@ -46,22 +45,19 @@ abstract class AsNameViewModel(application: Application, val searchString: Strin
 
     init {
         Timber.i("In AsNameViewModel init block")
-        viewModelScope.launch {
-            authToken = loginRepo.getAuthToken()
-            refreshAsNames(searchString)
-
-        }
+        refreshAsNames()
     }
     private var job : Job? = null
 
-    fun refreshAsNames(pattern: String) {
+    fun refreshAsNames() {
         job?.let {
             it.cancel()
         }
         job = viewModelScope.launch {
             _loadingStatus.value = AsLoadingStatus.LOADING
             try {
-                _asNameList.value = asNameRepo.refreshAsNames(authToken, pattern)
+                val authToken = loginRepo.getAuthToken()
+                _asNameList.value = asNameRepo.refreshAsNames(authToken, searchString)
                 _loadingStatus.value = AsLoadingStatus.NOOP
             } catch (e: java.net.SocketTimeoutException) {
                 _loadingStatus.value = AsLoadingStatus.TIMEOUT
@@ -119,6 +115,7 @@ class As2NameViewModel(application: Application, searchString: String) :
         Timber.i("as1id : ${as1Id}")
         Timber.i("as2id : ${as2Id}")
         viewModelScope.launch {
+            val authToken = loginRepo.getAuthToken()
             relationshipRepo.addRelationship(as1Id!!, as2Id!!, authToken)
             _navigateToHomeBN.value = true
 

@@ -5,6 +5,7 @@ import com.example.relatome.utils.Constants
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
@@ -49,6 +50,9 @@ interface RelatomeApiService {
 
     @GET("relationship/response")
     suspend fun getRelationshipResponses(@Header("auth-token") authToken: String): List<RelationshipResponseResponse>
+
+    @POST("relationship/as/create")
+    suspend fun addAnatomicalStructure(@Header("auth-token") authToken: String, @Body body: AddAsRequest) : ResponseBody
 }
 
 object RelatomeApi {

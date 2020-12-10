@@ -54,7 +54,7 @@ class As1NameSuggestionFragment : Fragment() {
                 AsLoadingStatus.LOADING -> binding.homeProgressBar.visibility = View.VISIBLE
                 AsLoadingStatus.TIMEOUT -> {
                     Snackbar.make(binding.root, "Connection timeout. Please try again.", Snackbar.LENGTH_LONG).show()
-                    viewModel.refreshAsNames(args.as1nameInput)
+                    viewModel.refreshAsNames()
                 }
                 else -> binding.homeProgressBar.visibility = View.GONE
             }
@@ -72,7 +72,17 @@ class As1NameSuggestionFragment : Fragment() {
 
         }
 
+        binding.as1nameAddButton.setOnClickListener {
+            findNavController().navigate(As1NameSuggestionFragmentDirections.actionAs1NameSuggestionFragmentToAddAsDialog(args.as1nameInput))
+        }
+
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.i("In onResume")
+        viewModel.refreshAsNames()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

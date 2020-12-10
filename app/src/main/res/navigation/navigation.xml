@@ -53,6 +53,9 @@
         <action
             android:id="@+id/action_as1NameSuggestionFragment_to_as2NameInputFragment"
             app:destination="@id/as2NameInputFragment" />
+        <action
+            android:id="@+id/action_as1NameSuggestionFragment_to_addAsDialog"
+            app:destination="@id/addAsDialog" />
     </fragment>
     <fragment
         android:id="@+id/as2NameInputFragment"
@@ -75,6 +78,9 @@
             android:id="@+id/action_as2NameSuggestionFragment_to_homeFragment"
             app:destination="@id/homeBNFragment"
             app:popUpTo="@id/navigation" />
+        <action
+            android:id="@+id/action_as2NameSuggestionFragment_to_addAs2Dialog"
+            app:destination="@id/addAs2Dialog" />
     </fragment>
     <fragment
         android:id="@+id/contributeBNFragment"
@@ -128,5 +134,30 @@
         <action
             android:id="@+id/action_fillReviseRelationshipFragment_to_reviseBNFragment"
             app:destination="@id/reviseBNFragment" />
+        <argument
+            android:name="relationshipId"
+            app:argType="string" />
     </fragment>
+    <dialog
+        android:id="@+id/addAsDialog"
+        android:name="com.example.relatome.ui.AddAs1Dialog"
+        android:label="AddAsDialog" >
+        <argument
+            android:name="as1NameInput"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addAsDialog_to_as1NameSuggestionFragment2"
+            app:destination="@id/as1NameSuggestionFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/addAs2Dialog"
+        android:name="com.example.relatome.ui.AddAs2Dialog"
+        android:label="AddAs2Dialog" >
+        <argument
+            android:name="as2NameInput"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addAs2Dialog_to_as2NameSuggestionFragment"
+            app:destination="@id/as2NameSuggestionFragment" />
+    </dialog>
 </navigation>

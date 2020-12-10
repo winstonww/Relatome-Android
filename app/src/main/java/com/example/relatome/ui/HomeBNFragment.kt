@@ -120,7 +120,7 @@ class HomeBNFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(ithCallback)
         itemTouchHelper.attachToRecyclerView(binding.relationshipRecycler)
 
-        ViewCompat.setNestedScrollingEnabled(binding.relationshipRecycler, false)
+//        ViewCompat.setNestedScrollingEnabled(binding.relationshipRecycler, false)
 
         return binding.root
     }

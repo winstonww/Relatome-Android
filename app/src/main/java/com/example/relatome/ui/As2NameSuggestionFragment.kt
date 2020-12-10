@@ -46,7 +46,7 @@ class As2NameSuggestionFragment : Fragment() {
                 AsLoadingStatus.LOADING -> binding.homeProgressBar.visibility = View.VISIBLE
                 AsLoadingStatus.TIMEOUT -> {
                     Snackbar.make(binding.root, "Connection timeout. Retrying...", Snackbar.LENGTH_LONG).show()
-                    viewModel.refreshAsNames(args.as2nameInput)
+                    viewModel.refreshAsNames()
                 }
                 else -> binding.homeProgressBar.visibility = View.GONE
             }
@@ -60,6 +60,10 @@ class As2NameSuggestionFragment : Fragment() {
                 viewModel.saveAsId(item.id, requireActivity().getSharedPreferences("Share", Context.MODE_PRIVATE))
                 viewModel.addRelationship(requireActivity().getSharedPreferences("Share", Context.MODE_PRIVATE))
             }
+        }
+
+        binding.as2nameAddButton.setOnClickListener {
+            findNavController().navigate(As2NameSuggestionFragmentDirections.actionAs2NameSuggestionFragmentToAddAs2Dialog(args.as2nameInput))
         }
 
         viewModel.navigateToHomeBN.observe(viewLifecycleOwner, Observer {

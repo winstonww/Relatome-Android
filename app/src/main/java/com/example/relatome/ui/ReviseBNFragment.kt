@@ -38,7 +38,12 @@ class ReviseBNFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentReviseBNBinding.inflate(layoutInflater, container, false)
 
-        val adapter = ReviseRelationshipAdapter(OnClick{})
+        val adapter = ReviseRelationshipAdapter(OnClick{ relationshipId ->
+            findNavController().navigate(
+                ReviseBNFragmentDirections.actionReviseBNFragmentToFillReviseRelationshipFragment(
+                    relationshipId
+                ))
+        })
         binding.reviseRecycler.adapter = adapter
 
         viewModel = ViewModelProvider(this,
@@ -109,6 +114,9 @@ class ReviseRelationshipAdapter(val onClick: OnClick) :
         holder.binding.as1Name.text = item.as1Name
         holder.binding.as2Name.text = item.as2Name
         holder.binding.relatonship.text = item.relationship
+        holder.binding.root.setOnClickListener {
+            onClick.action(item.relationshipId)
+        }
     }
 
 }

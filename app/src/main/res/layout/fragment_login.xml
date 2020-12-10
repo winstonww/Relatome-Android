@@ -71,6 +71,7 @@
             android:layout_height="46dp"
             android:layout_marginTop="340dp"
             android:text="Log in"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
