@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/undraw_searching_p5ux"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/contribute_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/roboto_slab_bold"
+        android:text="Contribute to the Community"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/picture" />
+
+
+    <TextView
+        android:id="@+id/textview2"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Cast your vote on relationship of each cards, that is, how each pair of anatomical structures are related. These are cards raised by other users, so help out the community and test yourself at the same time!"
+        android:textColor="#FFFFFF"
+        android:textSize="16dp"
+        android:textAlignment="center"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/contribute_textview" />
+</androidx.constraintlayout.widget.ConstraintLayout>

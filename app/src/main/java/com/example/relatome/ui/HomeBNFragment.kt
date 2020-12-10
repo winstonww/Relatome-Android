@@ -105,8 +105,6 @@ class HomeBNFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                Toast.makeText(requireContext(), "on swipe", Toast.LENGTH_SHORT).show()
-
                 // a hack to make delete action smoother
                 val position = viewHolder.adapterPosition
                 val list = homeViewModel.relationshipList.value?.toMutableList()

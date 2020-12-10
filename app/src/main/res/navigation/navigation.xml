@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/fragmentLogin">
+    app:startDestination="@id/onboardingFragment">
     <fragment
         android:id="@+id/fragmentLogin"
         android:name="com.example.relatome.ui.LoginFragment"
@@ -161,4 +161,13 @@
             android:id="@+id/action_addAs2Dialog_to_as2NameSuggestionFragment"
             app:destination="@id/as2NameSuggestionFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="com.example.relatome.ui.OnboardingFragment"
+        android:label="fragment_onboarding"
+        tools:layout="@layout/fragment_onboarding" >
+        <action
+            android:id="@+id/action_onboardingFragment_to_fragmentLogin"
+            app:destination="@id/fragmentLogin" />
+    </fragment>
 </navigation>

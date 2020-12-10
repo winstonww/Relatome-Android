@@ -53,7 +53,6 @@ class LoginFragment : Fragment() {
                     binding.myProgressBar.visibility = View.GONE
                 }
                 LoginStatus.LOGGED_IN -> {
-                    Toast.makeText(context, "Logged In!", Toast.LENGTH_LONG).show()
                     findNavController().navigate(LoginFragmentDirections.actionFragmentLoginToHomeFragment())
                     loginViewModel.setNavigateToLoginComplete()
                     binding.myProgressBar.visibility = View.GONE
