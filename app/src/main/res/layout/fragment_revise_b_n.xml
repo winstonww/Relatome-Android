@@ -26,16 +26,28 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/revise_relationship_textview"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginStart="30dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Revise"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="35sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <TextView
+                    android:id="@+id/revise_relationship_textview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="92dp"
                     android:text="Click to revise the following relationships"
                     android:textColor="#999999"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/revise_recycler"
@@ -52,7 +64,7 @@
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#DA686766"
+            android:background="#5A5A5A"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/bottom_navigation_menu" />

@@ -31,9 +31,9 @@ class FillRelationshipFragment : Fragment(), AdapterView.OnItemSelectedListener 
         val args = FillRelationshipFragmentArgs.fromBundle(requireArguments())
 
         ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.fill_relationship_spinner_array,
-            R.layout.spinner_item
+                requireContext(),
+        R.array.fill_relationship_spinner_array,
+        R.layout.spinner_item
         ).also { adapter ->
             // Specify the layout to use when the list of choices appears
             adapter.setDropDownViewResource(R.layout.spinner_dropdown)

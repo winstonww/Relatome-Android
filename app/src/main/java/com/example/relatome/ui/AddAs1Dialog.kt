@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.relatome.R
 import com.example.relatome.databinding.AddAsDialogBinding
+import com.example.relatome.utils.LoadingStatus
 import com.example.relatome.viewmodel.AddAs1ViewModel
-import com.example.relatome.viewmodel.LoadingStatus
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber

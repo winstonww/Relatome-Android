@@ -29,13 +29,19 @@ class ContributeViewModel(application: Application): AndroidViewModel(applicatio
     var job : Job? = null
 
     init {
+        refreshPendingRelationship()
+
+
+    }
+
+    fun refreshPendingRelationship() {
         job?.run {
             cancel()
         }
         job = viewModelScope.launch {
             _loadingStatus.value = ContributeLoadingStatus.LOADING
             try {
-                refreshPendingRelationship()
+                pendingRelationshipRepo.refreshPendingRelationships(loginRepo.getAuthToken())
                 _loadingStatus.value = ContributeLoadingStatus.NOOP
             } catch (e: java.net.SocketTimeoutException) {
                 _loadingStatus.value = ContributeLoadingStatus.TIMEOUT
@@ -44,10 +50,6 @@ class ContributeViewModel(application: Application): AndroidViewModel(applicatio
             }
         }
 
-    }
-
-    suspend fun refreshPendingRelationship() {
-        pendingRelationshipRepo.refreshPendingRelationships(loginRepo.getAuthToken())
     }
     /**
      * Factory for constructing ViewModel with parameter

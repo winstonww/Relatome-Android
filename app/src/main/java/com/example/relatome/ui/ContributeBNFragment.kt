@@ -19,6 +19,7 @@ import com.example.relatome.domain.PendingRelationshipDomainContribute
 import com.example.relatome.viewmodel.ContributeLoadingStatus
 import com.example.relatome.viewmodel.ContributeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -57,6 +58,10 @@ class ContributeBNFragment : Fragment() {
             when(it) {
                 ContributeLoadingStatus.LOADING -> {
                     binding.progressBar.visibility = View.VISIBLE
+                }
+                ContributeLoadingStatus.TIMEOUT -> {
+                    Snackbar.make(binding.root, "Connection Timeout. Retrying...", Snackbar.LENGTH_LONG).show()
+                    contributeViewModel.refreshPendingRelationship()
                 }
                 else -> {
                     binding.progressBar.visibility = View.GONE

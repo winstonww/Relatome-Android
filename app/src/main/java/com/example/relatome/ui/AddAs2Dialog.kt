@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.example.relatome.viewmodel.LoadingStatus
+import com.example.relatome.utils.LoadingStatus
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber

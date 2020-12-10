@@ -5,17 +5,11 @@ import androidx.lifecycle.*
 import com.example.relatome.database.getDatabase
 import com.example.relatome.repo.AddAsRepository
 import com.example.relatome.repo.LoginRepository
+import com.example.relatome.utils.LoadingStatus
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import timber.log.Timber
 
-sealed class LoadingStatus {
-    class Loading : LoadingStatus()
-    class Noop : LoadingStatus()
-    class Error : LoadingStatus()
-    class Timeout: LoadingStatus()
-    class NoConnection: LoadingStatus()
-}
 
 
 open class AddAsViewModel(application: Application): AndroidViewModel(application) {
@@ -48,7 +42,7 @@ open class AddAsViewModel(application: Application): AndroidViewModel(applicatio
             } catch (e: HttpException) {
                 if (e.code() == 400) {
                     Timber.i("400 error")
-                    _loadingStatus.value = LoadingStatus.Error()
+                    _loadingStatus.value = LoadingStatus.Error("Anatomical Structure already exists")
                 }
             } catch (e: java.net.SocketTimeoutException) {
                 _loadingStatus.value = LoadingStatus.Timeout()

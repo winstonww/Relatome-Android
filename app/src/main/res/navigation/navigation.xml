@@ -111,7 +111,8 @@
             app:destination="@id/homeBNFragment" />
         <action
             android:id="@+id/action_reviseBNFragment_to_fillReviseRelationshipFragment"
-            app:destination="@id/fillReviseRelationshipFragment" />
+            app:destination="@id/fillReviseRelationshipFragment"
+            app:enterAnim="@anim/from_bottom" />
     </fragment>
     <fragment
         android:id="@+id/fillRelationshipFragment"

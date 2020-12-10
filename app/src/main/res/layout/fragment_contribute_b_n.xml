@@ -39,12 +39,24 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contribute"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:textColor="#FFFFFF"
+                    android:textSize="35sp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="30sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
 
                 <TextView
                     android:id="@+id/textView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="92dp"
                     android:paddingStart="30dp"
                     android:text="Click to fill in the relationship for the following cards:"
                     android:textColor="#999999"
@@ -73,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="#DA686766"
+            android:background="#5A5A5A"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
