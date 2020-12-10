@@ -46,6 +46,12 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
                 _loadingStatus.value = HomeStatus.TIMEOUT
             } catch (e: java.net.UnknownHostException) {
                 _loadingStatus.value = HomeStatus.NO_CONNECTION
+            } catch (e: retrofit2.HttpException) {
+                if (e.code() == 503) {
+                    _loadingStatus.value = HomeStatus.TIMEOUT
+                } else {
+                    Timber.i("In HomeViewModel ")
+                }
             }
             _loadingStatus.value = HomeStatus.NOOP
         }

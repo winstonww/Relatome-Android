@@ -7,6 +7,7 @@ import com.example.relatome.repo.LoginRepository
 import com.example.relatome.repo.PendingRelationshipRepository
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 enum class ContributeLoadingStatus{
     NOOP,
@@ -35,9 +36,9 @@ class ContributeViewModel(application: Application): AndroidViewModel(applicatio
     }
 
     fun refreshPendingRelationship() {
-        job?.run {
-            cancel()
-        }
+//        job?.run {
+//            cancel()
+//        }
         job = viewModelScope.launch {
             _loadingStatus.value = ContributeLoadingStatus.LOADING
             try {
@@ -46,6 +47,9 @@ class ContributeViewModel(application: Application): AndroidViewModel(applicatio
             } catch (e: java.net.SocketTimeoutException) {
                 _loadingStatus.value = ContributeLoadingStatus.TIMEOUT
             } catch (e: java.net.UnknownHostException) {
+                _loadingStatus.value = ContributeLoadingStatus.NO_CONNECTION
+            } catch (e: Exception) {
+                Timber.i("HEREEEEE e: ${e.toString()}")
                 _loadingStatus.value = ContributeLoadingStatus.NO_CONNECTION
             }
         }
